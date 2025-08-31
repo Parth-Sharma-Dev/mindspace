@@ -1,0 +1,485 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>MindSpace - Your Safe Space for Mental Wellbeing</title>
+    <meta
+      name="description"
+      content="A supportive mental health platform for students. Track your mood, access resources, and connect with peers in a safe environment."
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Inter:wght@400;500;600&display=swap"
+      rel="stylesheet"
+    />
+
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}" />
+  </head>
+  <body>
+    <!-- Navigation -->
+    <nav id="navbar">
+      <div class="nav-container">
+        <div class="nav-brand" data-testid="logo-mindspace">
+          <div class="logo">🧠</div>
+          <span class="brand-name">MindSpace</span>
+        </div>
+        <div class="nav-links" id="navLinks">
+          <a
+            href="#"
+            class="nav-link active"
+            data-page="landing"
+            data-testid="nav-link-landing"
+            >Home</a
+          >
+          <a
+            href="#"
+            class="nav-link"
+            data-page="dashboard"
+            data-testid="nav-link-dashboard"
+            >Dashboard</a
+          >
+          <a
+            href="#"
+            class="nav-link"
+            data-page="forum"
+            data-testid="nav-link-forum"
+            >Forum</a
+          >
+          <a
+            href="#"
+            class="nav-link"
+            data-page="resources"
+            data-testid="nav-link-resources"
+            >Resources</a
+          >
+          <a
+            href="#"
+            class="nav-link"
+            data-page="emergency"
+            data-testid="nav-link-emergency"
+            >Helplines</a
+          >
+        </div>
+        <button
+          class="mobile-menu-btn"
+          id="mobileMenuBtn"
+          data-testid="mobile-menu-button"
+        >
+          ☰
+        </button>
+      </div>
+    </nav>
+
+    <!-- Landing Page -->
+    <section id="landing" class="page active">
+      <div class="hero-section">
+        <div class="container">
+          <div class="hero-content">
+            <h1 class="hero-title">
+              Your Safe Space for
+              <span class="gradient-text">Mental Wellbeing</span>
+            </h1>
+            <p class="hero-subtitle">
+              A supportive community where students can find resources, connect
+              anonymously, and prioritize their mental health journey.
+            </p>
+            <div class="hero-buttons">
+              <button
+                class="btn btn-primary"
+                data-page="dashboard"
+                data-testid="button-get-support"
+              >
+                Get Support
+              </button>
+              <button
+                class="btn btn-secondary"
+                data-page="resources"
+                data-testid="button-resources"
+              >
+                Resources
+              </button>
+              <button
+                class="btn btn-emergency"
+                data-page="emergency"
+                data-testid="button-emergency-help"
+              >
+                Emergency Help
+              </button>
+            </div>
+          </div>
+
+          <div class="features-grid">
+            <div class="feature-card">
+              <div class="feature-icon">🎯</div>
+              <h3 class="feature-title">Mood Tracking</h3>
+              <p class="feature-description">
+                Monitor your emotional wellbeing with our simple daily mood
+                tracker.
+              </p>
+            </div>
+            <div class="feature-card">
+              <div class="feature-icon">💬</div>
+              <h3 class="feature-title">Anonymous Forum</h3>
+              <p class="feature-description">
+                Connect with peers in a safe, judgment-free environment.
+              </p>
+            </div>
+            <div class="feature-card">
+              <div class="feature-icon">📚</div>
+              <h3 class="feature-title">Self-Help Resources</h3>
+              <p class="feature-description">
+                Access curated guides for stress, sleep, and relationships.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Dashboard Page -->
+    <section id="dashboard" class="page">
+      <div class="container">
+        <div class="page-header">
+          <h1>Your Wellbeing Dashboard</h1>
+          <p>Track your mood and access support tools</p>
+        </div>
+
+        <!-- Mood Tracker -->
+        <div class="card mood-tracker-card">
+          <h2>How are you feeling today?</h2>
+          <div class="mood-buttons" data-testid="mood-tracker">
+            <button
+              class="mood-button"
+              data-mood="happy"
+              title="Happy"
+              data-testid="mood-button-happy"
+            >
+              😊
+            </button>
+            <button
+              class="mood-button"
+              data-mood="neutral"
+              title="Neutral"
+              data-testid="mood-button-neutral"
+            >
+              😐
+            </button>
+            <button
+              class="mood-button"
+              data-mood="sad"
+              title="Sad"
+              data-testid="mood-button-sad"
+            >
+              😔
+            </button>
+            <button
+              class="mood-button"
+              data-mood="very-sad"
+              title="Very Sad"
+              data-testid="mood-button-very-sad"
+            >
+              😢
+            </button>
+            <button
+              class="mood-button"
+              data-mood="angry"
+              title="Angry"
+              data-testid="mood-button-angry"
+            >
+              😡
+            </button>
+          </div>
+          <div id="moodFeedback" class="mood-feedback"></div>
+        </div>
+
+        <!-- Motivational Quote -->
+        <div class="card quote-card">
+          <h3>Daily Inspiration</h3>
+          <blockquote id="motivationalQuote">
+            "You are stronger than you think and more capable than you imagine."
+          </blockquote>
+          <button
+            class="btn btn-ghost"
+            id="newQuoteBtn"
+            data-testid="button-new-quote"
+          >
+            New Quote
+          </button>
+        </div>
+
+        <!-- Quick Access Tiles -->
+        <div class="tiles-grid">
+          <div
+            class="tile"
+            data-page="forum"
+            data-testid="tile-anonymous-forum"
+          >
+            <div class="tile-icon">💬</div>
+            <h3>Anonymous Forum</h3>
+            <p>Share and connect with peers</p>
+          </div>
+          <div
+            class="tile"
+            data-page="resources"
+            data-testid="tile-self-help-guides"
+          >
+            <div class="tile-icon">📖</div>
+            <h3>Self-Help Guides</h3>
+            <p>Learn coping strategies</p>
+          </div>
+          <div class="tile" data-page="emergency" data-testid="tile-helplines">
+            <div class="tile-icon">📞</div>
+            <h3>Helplines</h3>
+            <p>Immediate support resources</p>
+          </div>
+          <div class="tile" data-testid="tile-community-events">
+            <div class="tile-icon">🎪</div>
+            <h3>Community Events</h3>
+            <p>Join wellness activities</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Forum Page -->
+    <section id="forum" class="page">
+      <div class="container">
+        <div class="page-header">
+          <h1>Anonymous Forum</h1>
+          <p>Share your thoughts in a safe, supportive space</p>
+        </div>
+
+        <!-- Create Post -->
+        <div class="card create-post-card">
+          <h2>Share Something</h2>
+          <input
+            type="text"
+            id="postTitle"
+            placeholder="Give your post a title..."
+            data-testid="input-post-title"
+          />
+          <textarea
+            id="postContent"
+            placeholder="What's on your mind? Remember, this is anonymous and safe..."
+            data-testid="input-post-content"
+          ></textarea>
+          <button
+            class="btn btn-primary"
+            id="sharePostBtn"
+            data-testid="button-share-post"
+          >
+            Share Anonymously
+          </button>
+        </div>
+
+        <!-- Posts Container -->
+        <div id="postsContainer" data-testid="posts-container">
+          <!-- Posts will be dynamically added here -->
+        </div>
+      </div>
+    </section>
+
+    <!-- Resources Page -->
+    <section id="resources" class="page">
+      <div class="container">
+        <div class="page-header">
+          <h1>Mental Health Resources</h1>
+          <p>Evidence-based tools and strategies for your wellbeing</p>
+        </div>
+
+        <div class="resources-grid">
+          <div class="resource-card stress-card">
+            <div class="resource-icon">🧘‍♀️</div>
+            <h3>Stress Management</h3>
+            <p>
+              Learn breathing techniques, mindfulness practices, and time
+              management strategies to reduce daily stress.
+            </p>
+            <ul class="resource-tips">
+              <li>• 5-minute breathing exercises</li>
+              <li>• Progressive muscle relaxation</li>
+              <li>• Time blocking techniques</li>
+            </ul>
+            <button
+              class="btn btn-primary"
+              data-testid="button-read-more-stress-management"
+            >
+              Read More
+            </button>
+          </div>
+
+          <div class="resource-card sleep-card">
+            <div class="resource-icon">😴</div>
+            <h3>Sleep Hygiene</h3>
+            <p>
+              Improve your sleep quality with proven strategies for better rest
+              and recovery.
+            </p>
+            <ul class="resource-tips">
+              <li>• Optimal sleep environment</li>
+              <li>• Bedtime routine creation</li>
+              <li>• Screen time management</li>
+            </ul>
+            <button
+              class="btn btn-secondary"
+              data-testid="button-read-more-sleep"
+            >
+              Read More
+            </button>
+          </div>
+
+          <div class="resource-card relationships-card">
+            <div class="resource-icon">💝</div>
+            <h3>Relationships</h3>
+            <p>
+              Build healthier connections with friends, family, and romantic
+              partners through communication skills.
+            </p>
+            <ul class="resource-tips">
+              <li>• Active listening techniques</li>
+              <li>• Boundary setting</li>
+              <li>• Conflict resolution</li>
+            </ul>
+            <button
+              class="btn btn-accent"
+              data-testid="button-read-more-relationships"
+            >
+              Read More
+            </button>
+          </div>
+
+          <div class="resource-card exam-card">
+            <div class="resource-icon">📚</div>
+            <h3>Exam Pressure</h3>
+            <p>
+              Navigate academic stress with effective study strategies and
+              anxiety management techniques.
+            </p>
+            <ul class="resource-tips">
+              <li>• Study schedule optimization</li>
+              <li>• Test anxiety reduction</li>
+              <li>• Memory enhancement tips</li>
+            </ul>
+            <button
+              class="btn btn-primary"
+              data-testid="button-read-more-exam-pressure"
+            >
+              Read More
+            </button>
+          </div>
+        </div>
+
+        <!-- Self-Care Tips -->
+        <div class="card self-care-card">
+          <h2>Quick Self-Care Tips</h2>
+          <div class="self-care-grid">
+            <div class="self-care-tip">
+              <div class="tip-icon">🌱</div>
+              <h4>5-Minute Reset</h4>
+              <p>
+                Take deep breaths, stretch your body, and drink a glass of
+                water.
+              </p>
+            </div>
+            <div class="self-care-tip">
+              <div class="tip-icon">📝</div>
+              <h4>Gratitude Practice</h4>
+              <p>Write down three things you're grateful for each morning.</p>
+            </div>
+            <div class="self-care-tip">
+              <div class="tip-icon">🚶‍♀️</div>
+              <h4>Movement Break</h4>
+              <p>Take a 10-minute walk or do some light stretching.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Emergency Help Page -->
+    <section id="emergency" class="page">
+      <div class="container">
+        <div class="page-header">
+          <h1>Emergency Support</h1>
+          <p>Immediate help is available - you're not alone</p>
+        </div>
+
+        <!-- SOS Button -->
+        <div class="sos-section">
+          <button class="sos-button" data-testid="button-sos">
+            🆘 GET HELP NOW
+          </button>
+          <p>Click for immediate crisis intervention resources</p>
+        </div>
+
+        <!-- Crisis Helplines -->
+        <div class="card helplines-card">
+          <h2>24/7 Crisis Helplines</h2>
+          <div class="helplines-grid">
+            <div class="helpline" data-testid="helpline-0">
+              <h3>National Suicide Prevention Lifeline</h3>
+              <p class="helpline-number">988</p>
+              <p class="helpline-description">
+                Free, confidential support 24/7
+              </p>
+            </div>
+            <div class="helpline" data-testid="helpline-1">
+              <h3>Crisis Text Line</h3>
+              <p class="helpline-number">Text HOME to 741741</p>
+              <p class="helpline-description">Text-based crisis support</p>
+            </div>
+            <div class="helpline" data-testid="helpline-2">
+              <h3>Campus Counseling Center</h3>
+              <p class="helpline-number">(555) 123-HELP</p>
+              <p class="helpline-description">On-campus emergency support</p>
+            </div>
+            <div class="helpline" data-testid="helpline-3">
+              <h3>Emergency Services</h3>
+              <p class="helpline-number">911</p>
+              <p class="helpline-description">
+                For immediate medical emergencies
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <!-- When to Seek Help -->
+        <div class="card help-guide-card">
+          <h2>When to Reach Out for Help</h2>
+          <div class="help-guide-grid">
+            <div class="help-section">
+              <h3 class="emergency-text">Immediate Help Needed:</h3>
+              <ul>
+                <li>• Thoughts of self-harm or suicide</li>
+                <li>• Feeling like you might hurt someone</li>
+                <li>• Severe panic or anxiety attacks</li>
+                <li>• Complete inability to function</li>
+              </ul>
+            </div>
+            <div class="help-section">
+              <h3 class="support-text">Support Recommended:</h3>
+              <ul>
+                <li>• Persistent sadness or worry</li>
+                <li>• Changes in sleep or appetite</li>
+                <li>• Difficulty concentrating</li>
+                <li>• Feeling overwhelmed regularly</li>
+              </ul>
+            </div>
+          </div>
+          <div class="remember-section">
+            <h3>Remember:</h3>
+            <p>
+              Seeking help is a sign of strength, not weakness. Every feeling is
+              valid, and support is always available.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <script src="{% static 'js/script.js' %}"></script>
+  </body>
+</html>
