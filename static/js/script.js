@@ -1,5 +1,4 @@
 // Global state
-let currentPage = 'landing';
 let selectedMood = localStorage.getItem('selectedMood');
 let forumPosts = JSON.parse(localStorage.getItem('forumPosts')) || [];
 
@@ -55,81 +54,34 @@ if (forumPosts.length === 0) {
     localStorage.setItem('forumPosts', JSON.stringify(forumPosts));
 }
 
-// Navigation functionality
-function initNavigation() {
-    const navLinks = document.querySelectorAll('.nav-link');
-    const heroButtons = document.querySelectorAll('.hero-buttons .btn');
-    const tileButtons = document.querySelectorAll('.tile');
-    const brandLogo = document.querySelector('.nav-brand');
+// Mobile navigation functionality
+function initMobileNavigation() {
     const mobileMenuBtn = document.getElementById('mobileMenuBtn');
     const navLinksContainer = document.getElementById('navLinks');
 
-    // Navigation click handlers
-    function navigateToPage(pageName) {
-        // Hide all pages
-        document.querySelectorAll('.page').forEach(page => {
-            page.classList.remove('active');
+    if (mobileMenuBtn && navLinksContainer) {
+        mobileMenuBtn.addEventListener('click', () => {
+            navLinksContainer.classList.toggle('show');
         });
-        
-        // Show target page
-        const targetPage = document.getElementById(pageName);
-        if (targetPage) {
-            targetPage.classList.add('active');
-            currentPage = pageName;
-        }
-        
-        // Update active nav link
-        navLinks.forEach(link => link.classList.remove('active'));
-        const activeLink = document.querySelector(`[data-page="${pageName}"]`);
-        if (activeLink && activeLink.classList.contains('nav-link')) {
-            activeLink.classList.add('active');
-        }
     }
-
-    // Nav link events
-    navLinks.forEach(link => {
-        link.addEventListener('click', (e) => {
-            e.preventDefault();
-            const pageName = link.getAttribute('data-page');
-            navigateToPage(pageName);
-        });
-    });
-
-    // Hero button events
-    heroButtons.forEach(button => {
-        button.addEventListener('click', () => {
-            const pageName = button.getAttribute('data-page');
-            if (pageName) {
-                navigateToPage(pageName);
-            }
-        });
-    });
-
-    // Tile button events
-    tileButtons.forEach(tile => {
-        tile.addEventListener('click', () => {
-            const pageName = tile.getAttribute('data-page');
-            if (pageName && pageName !== '#') {
-                navigateToPage(pageName);
-            }
-        });
-    });
-
-    // Brand logo click
-    brandLogo.addEventListener('click', () => {
-        navigateToPage('landing');
-    });
-
-    // Mobile menu toggle
-    mobileMenuBtn.addEventListener('click', () => {
-        navLinksContainer.classList.toggle('show');
-    });
 }
 
-// Mood tracking functionality
+// Brand logo navigation
+function initBrandNavigation() {
+    const brandLogo = document.querySelector('.nav-brand');
+    if (brandLogo) {
+        brandLogo.addEventListener('click', () => {
+            window.location.href = 'index.html';
+        });
+    }
+}
+
+// Mood tracking functionality (for dashboard.html)
 function initMoodTracker() {
     const moodButtons = document.querySelectorAll('.mood-button');
     const moodFeedback = document.getElementById('moodFeedback');
+
+    if (moodButtons.length === 0) return; // Not on dashboard page
 
     // Load saved mood
     if (selectedMood) {
@@ -175,38 +127,36 @@ function initMoodTracker() {
     }
 }
 
-// Motivational quotes functionality
+// Motivational quotes functionality (for dashboard.html)
 function initQuotes() {
     const quoteElement = document.getElementById('motivationalQuote');
     const newQuoteBtn = document.getElementById('newQuoteBtn');
 
+    if (!quoteElement || !newQuoteBtn) return; // Not on dashboard page
+
     function changeQuote() {
         const randomQuote = quotes[Math.floor(Math.random() * quotes.length)];
-        if (quoteElement) {
-            quoteElement.textContent = `"${randomQuote}"`;
-            quoteElement.classList.add('fade-in');
-            setTimeout(() => quoteElement.classList.remove('fade-in'), 300);
-        }
+        quoteElement.textContent = `"${randomQuote}"`;
+        quoteElement.classList.add('fade-in');
+        setTimeout(() => quoteElement.classList.remove('fade-in'), 300);
     }
 
-    if (newQuoteBtn) {
-        newQuoteBtn.addEventListener('click', changeQuote);
-    }
+    newQuoteBtn.addEventListener('click', changeQuote);
 
     // Set initial quote
     changeQuote();
 }
 
-// Forum functionality
+// Forum functionality (for forum.html)
 function initForum() {
     const postTitleInput = document.getElementById('postTitle');
     const postContentInput = document.getElementById('postContent');
     const sharePostBtn = document.getElementById('sharePostBtn');
     const postsContainer = document.getElementById('postsContainer');
 
+    if (!postsContainer) return; // Not on forum page
+
     function renderPosts() {
-        if (!postsContainer) return;
-        
         postsContainer.innerHTML = '';
         
         forumPosts.forEach(post => {
@@ -311,27 +261,37 @@ function initForum() {
     updateShareButton();
 }
 
-// Initialize all functionality when DOM is loaded
-document.addEventListener('DOMContentLoaded', () => {
-    initNavigation();
-    initMoodTracker();
-    initQuotes();
-    initForum();
-    
-    // Handle resource buttons (dummy functionality)
+// Resource buttons functionality (for resources.html)
+function initResourceButtons() {
     document.querySelectorAll('[data-testid^="button-read-more"]').forEach(button => {
         button.addEventListener('click', () => {
             alert('This would open detailed resources in a real application!');
         });
     });
+}
 
-    // Handle SOS button
+// SOS button functionality (for emergency.html)
+function initSOSButton() {
     const sosButton = document.querySelector('[data-testid="button-sos"]');
     if (sosButton) {
         sosButton.addEventListener('click', () => {
             alert('In a real emergency, this would immediately connect you to crisis support services.');
         });
     }
+}
+
+// Initialize all functionality when DOM is loaded
+document.addEventListener('DOMContentLoaded', () => {
+    // Common functionality for all pages
+    initMobileNavigation();
+    initBrandNavigation();
+    
+    // Page-specific functionality
+    initMoodTracker();      // Dashboard only
+    initQuotes();           // Dashboard only
+    initForum();            // Forum only
+    initResourceButtons();  // Resources only
+    initSOSButton();        // Emergency only
 });
 
 // Utility functions

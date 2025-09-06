@@ -1,0 +1,55 @@
+{% extends "base.html" %}
+{% block title %}MindSpace - Resources{% endblock %}
+{% block meta_description %}Access curated self-help resources for stress management, sleep improvement, mindfulness, and wellbeing.{% endblock %}
+
+{% block content %}
+<main class="page active">
+    <div class="container">
+        <h1 class="page-header">Self-Help Resources</h1>
+
+        <!-- Resource Cards -->
+        <div class="resources-grid">
+            <div class="resource-card">
+                <div class="resource-icon">🌿</div>
+                <h3>Managing Stress</h3>
+                <p>Learn simple techniques to cope with daily stress and anxiety.</p>
+                <a href="#" class="btn btn-secondary">Read More</a>
+            </div>
+            <div class="resource-card">
+                <div class="resource-icon">😴</div>
+                <h3>Better Sleep</h3>
+                <p>Tips and routines to improve your sleep quality and rest better.</p>
+                <a href="#" class="btn btn-secondary">Read More</a>
+            </div>
+            <div class="resource-card">
+                <div class="resource-icon">🧘</div>
+                <h3>Mindfulness</h3>
+                <p>Practice meditation and mindfulness exercises for inner calm.</p>
+                <a href="#" class="btn btn-secondary">Read More</a>
+            </div>
+        </div>
+
+        <!-- Self-Care Tips -->
+        <section class="card self-care-card">
+            <h2>Daily Self-Care</h2>
+            <div class="self-care-grid">
+                <div class="self-care-tip">
+                    <div class="tip-icon">🚶</div>
+                    <h4>Move Around</h4>
+                    <p>Take short breaks and stretch</p>
+                </div>
+                <div class="self-care-tip">
+                    <div class="tip-icon">💧</div>
+                    <h4>Stay Hydrated</h4>
+                    <p>Drink enough water daily</p>
+                </div>
+                <div class="self-care-tip">
+                    <div class="tip-icon">📱</div>
+                    <h4>Digital Detox</h4>
+                    <p>Limit screen time before bed</p>
+                </div>
+            </div>
+        </section>
+    </div>
+</main>
+{% endblock %}

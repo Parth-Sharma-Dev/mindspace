@@ -1,0 +1,64 @@
+{% extends "base.html" %}
+{% block title %}MindSpace - Emergency Help{% endblock %}
+{% block meta_description %}Find mental health emergency helplines and immediate support options when you need urgent help.{% endblock %}
+
+{% block content %}
+<main class="page active">
+    <div class="container">
+        <h1 class="page-header emergency-text">Emergency Help</h1>
+
+        <!-- SOS -->
+        <section class="sos-section">
+            <button class="sos-button">🚨 Call 112 (India)</button>
+            <p>If you're in danger or need urgent support, please call your local emergency number.</p>
+        </section>
+
+        <!-- Helplines -->
+        <section class="card helplines-card">
+            <h2>Mental Health Helplines</h2>
+            <div class="helplines-grid">
+                <div class="helpline">
+                    <h3>Vandrevala Foundation</h3>
+                    <div class="helpline-number">1860 266 2345</div>
+                    <p class="helpline-description">Free emotional support</p>
+                </div>
+                <div class="helpline">
+                    <h3>AASRA</h3>
+                    <div class="helpline-number">+91-9820466726</div>
+                    <p class="helpline-description">24/7 Suicide prevention helpline</p>
+                </div>
+                <div class="helpline">
+                    <h3>iCALL</h3>
+                    <div class="helpline-number">+91-9152987821</div>
+                    <p class="helpline-description">Counseling and support</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Self Help -->
+        <section class="card help-guide-card">
+            <h2>What You Can Do</h2>
+            <div class="help-guide-grid">
+                <div class="help-section">
+                    <h3 class="support-text">Stay Connected</h3>
+                    <ul>
+                        <li>Talk to a trusted friend or family member</li>
+                    </ul>
+                </div>
+                <div class="help-section">
+                    <h3 class="support-text">Calm Yourself</h3>
+                    <ul>
+                        <li>Practice deep breathing</li>
+                        <li>Listen to calming music</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <section class="remember-section">
+            <h3>Remember 💙</h3>
+            <p>You are not alone. Help is always available.</p>
+        </section>
+    </div>
+</main>
+{% endblock %}

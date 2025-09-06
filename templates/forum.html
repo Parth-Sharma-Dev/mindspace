@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+{% block title %}MindSpace - Forum{% endblock %}
+{% block meta_description %}Connect anonymously with peers in a safe, judgment-free forum to share thoughts and support each other.{% endblock %}
+
+{% block content %}
+<main class="page active">
+    <div class="container">
+        <h1 class="page-header">Community Forum</h1>
+
+        <!-- Create Post -->
+        <section class="card create-post-card">
+            <h2>Start a Discussion</h2>
+            <form method="post">
+                {% csrf_token %}
+                <textarea name="post_content" placeholder="Share your thoughts..."></textarea>
+                <button type="submit" class="btn btn-primary">Post</button>
+            </form>
+        </section>
+
+        <!-- Posts -->
+        <section>
+            <h2>Recent Posts</h2>
+            <div class="forum-post">
+                <h3>Anonymous</h3>
+                <p class="forum-post-content">You're not alone. We’re all here to support each other 💙</p>
+                <div class="forum-post-meta">
+                    <span>2h ago</span>
+                    <button class="replies-toggle">View Replies</button>
+                </div>
+                <div class="forum-replies">
+                    <div class="forum-reply">
+                        <p class="forum-reply-content">Stay strong 💪</p>
+                        <span class="forum-reply-time">1h ago</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+</main>
+{% endblock %}
