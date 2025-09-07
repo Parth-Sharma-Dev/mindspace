@@ -1,43 +1,194 @@
-{% extends "base.html" %}
-{% block title %}MindSpace - Your Safe Space for Mental Wellbeing{% endblock %}
-{% block meta_description %}A supportive mental health platform for students. Track your mood, access resources, and connect with peers in a safe environment.{% endblock %}
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Welcome to MindSpace - Your Safe Space for Mental Wellbeing</title>
+    <meta
+      name="description"
+      content="MindSpace is a supportive mental health platform for students. Track your mood, access resources, and connect with peers in a safe, anonymous environment."
+    />
 
-{% block content %}
-<main class="page active">
-    <div class="hero-section">
-        <div class="container">
-            <div class="hero-content">
-                <h1 class="hero-title">
-                    Your Safe Space for
-                    <span class="gradient-text">Mental Wellbeing</span>
-                </h1>
-                <p class="hero-subtitle">
-                    A supportive community where students can find resources, connect anonymously, and prioritize their mental health journey.
-                </p>
-                <div class="hero-buttons">
-                    <a href="{% url 'dashboard' %}" class="btn btn-primary" data-testid="button-get-support">Get Support</a>
-                    <a href="{% url 'resources' %}" class="btn btn-secondary" data-testid="button-resources">Resources</a>
-                    <a href="{% url 'emergency' %}" class="btn btn-emergency" data-testid="button-emergency-help">Emergency Help</a>
-                </div>
-            </div>
-                    <div class="features-grid">
-                <div class="feature-card">
-                    <div class="feature-icon">🎯</div>
-                    <h3 class="feature-title">Mood Tracking</h3>
-                    <p class="feature-description">Monitor your emotional wellbeing with our simple daily mood tracker.</p>
-                </div>
-                <div class="feature-card">
-                    <div class="feature-icon">💬</div>
-                    <h3 class="feature-title">Anonymous Forum</h3>
-                    <p class="feature-description">Connect with peers in a safe, judgment-free environment.</p>
-                </div>
-                <div class="feature-card">
-                    <div class="feature-icon">📚</div>
-                    <h3 class="feature-title">Self-Help Resources</h3>
-                    <p class="feature-description">Access curated guides for stress, sleep, and relationships.</p>
-                </div>
-            </div>
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Core stylesheet -->
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}" />
+  </head>
+  <body class="landing-body-detailed">
+    <!-- Landing Page Header -->
+    <header class="landing-header">
+      <div class="nav-container">
+        <div class="nav-brand">
+          <div class="logo">🧠</div>
+          <span class="brand-name">MindSpace</span>
         </div>
-    </div>
-</main>
-{% endblock %}
+        <div class="landing-header-actions">
+          <a href="{% url 'login' %}" class="btn btn-secondary">Log In</a>
+          <a href="{% url 'signup' %}" class="btn btn-primary">Get Started</a>
+        </div>
+      </div>
+    </header>
+    <!-- Main Content -->
+    <main>
+      <!-- Hero Section -->
+      <section class="hero-section-landing">
+        <div class="container text-center">
+          <h1 class="landing-hero-title">
+            A safe space for your mental wellbeing.
+          </h1>
+          <p class="landing-hero-subtitle">
+            Designed for students, MindSpace provides the tools and community
+            you need to navigate your mental health journey. Anonymously and
+            securely.
+          </p>
+          <a href="{% url 'signup' %}" class="btn btn-primary btn-large"
+            >Get Started for Free</a
+          >
+        </div>
+      </section>
+
+      <!-- Feature Section 1: Mood Tracking -->
+      <section class="feature-section">
+        <div class="container feature-container">
+          <div class="feature-text">
+            <h2>Understand Your Emotions</h2>
+            <p>
+              Our simple daily mood tracker helps you recognize patterns in your
+              emotional wellbeing. By logging how you feel, you can gain
+              valuable insights into your mental health over time, empowering
+              you to take proactive steps towards a healthier mind.
+            </p>
+          </div>
+          <div class="feature-image">
+            <!-- Placeholder for an image or graphic of the mood tracker -->
+            <img
+              src="https://placehold.co/500x400/E2F0FF/333?text=Mood+Tracker+UI"
+              alt="Mood Tracker Interface"
+              style="border-radius: 8px; max-width: 100%; height: auto"
+            />
+          </div>
+        </div>
+      </section>
+
+      <!-- Feature Section 2: Anonymous Forum -->
+      <section class="feature-section alt-layout">
+        <div class="container feature-container">
+          <div class="feature-text">
+            <h2>Connect Without Judgment</h2>
+            <p>
+              You're not alone. Our anonymous forum is a judgment-free zone
+              where you can share your thoughts, ask for advice, and connect
+              with fellow students who understand what you're going through.
+              Share and support each other in complete privacy.
+            </p>
+          </div>
+          <div class="feature-image">
+            <!-- Placeholder for an image or graphic of the forum -->
+            <img
+              src="https://placehold.co/500x400/D6F5F2/333?text=Anonymous+Forum"
+              alt="Anonymous Forum Interface"
+              style="border-radius: 8px; max-width: 100%; height: auto"
+            />
+          </div>
+        </div>
+      </section>
+
+      <!-- Feature Section 3: Resources -->
+      <section class="feature-section">
+        <div class="container feature-container">
+          <div class="feature-text">
+            <h2>Access Self-Help Guides</h2>
+            <p>
+              Explore a curated library of resources designed to help you manage
+              stress, improve sleep, build healthier relationships, and cope
+              with academic pressure. Our evidence-based guides provide
+              actionable strategies you can use anytime, anywhere.
+            </p>
+          </div>
+          <div class="feature-image">
+            <!-- Placeholder for an image or graphic of resources -->
+            <img
+              src="https://placehold.co/500x400/FFF0E2/333?text=Resource+Library"
+              alt="Self-Help Resources"
+              style="border-radius: 8px; max-width: 100%; height: auto"
+            />
+          </div>
+        </div>
+      </section>
+
+      <!-- FAQ Section -->
+      <section class="faq-section">
+        <div class="container">
+          <h2 class="text-center">Frequently Asked Questions</h2>
+          <div class="faq-accordion">
+            <div class="faq-item">
+              <button class="faq-question">
+                Is MindSpace really anonymous?
+              </button>
+              <div class="faq-answer">
+                <p>
+                  Yes. Anonymity is at the core of our platform. Your posts in
+                  the forum are not linked to your personal identity, allowing
+                  you to share freely and safely.
+                </p>
+              </div>
+            </div>
+            <div class="faq-item">
+              <button class="faq-question">
+                Is this platform free for students?
+              </button>
+              <div class="faq-answer">
+                <p>
+                  Absolutely. MindSpace is completely free for all students. Our
+                  goal is to make mental health support accessible to everyone
+                  who needs it.
+                </p>
+              </div>
+            </div>
+            <div class="faq-item">
+              <button class="faq-question">
+                Is this a replacement for professional therapy?
+              </button>
+              <div class="faq-answer">
+                <p>
+                  No. MindSpace is a supportive tool and community, but it is
+                  not a substitute for professional medical advice, diagnosis,
+                  or treatment. We provide emergency resources and encourage you
+                  to seek help from a qualified professional for any serious
+                  concerns.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="landing-footer">
+      <div class="container text-center">
+        <h2>Ready to prioritize your mental wellbeing?</h2>
+        <a href="{% url 'signup' %}" class="btn btn-primary btn-large"
+          >Join MindSpace Today</a
+        >
+      </div>
+    </footer>
+
+    <script>
+      // Simple script for FAQ accordion functionality
+      document.querySelectorAll(".faq-question").forEach((button) => {
+        button.addEventListener("click", () => {
+          const faqItem = button.parentElement;
+          faqItem.classList.toggle("active");
+        });
+      });
+    </script>
+  </body>
+</html>

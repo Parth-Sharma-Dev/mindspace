@@ -1,0 +1,76 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign Up - MindSpace</title>
+    <meta name="description" content="Create your MindSpace account to begin your mental wellbeing journey.">
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- Core stylesheet -->
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+</head>
+<body class="auth-body">
+
+    <main class="auth-container">
+        <div class="auth-card">
+            <div class="auth-header">
+                <div class="logo">🧠</div>
+                <h1 class="brand-name">Create your MindSpace Account</h1>
+                <p>Join our supportive community today.</p>
+            </div>
+            
+            <!-- This form now uses Django's template tags to render fields -->
+            <form class="auth-form" method="POST" action="{% url 'signup' %}" novalidate>
+                {% csrf_token %}
+
+                <!-- This is for displaying non-field errors, like password mismatch -->
+                {% if form.non_field_errors %}
+                    <div class="form-errors">
+                        {% for error in form.non_field_errors %}
+                            <p>{{ error }}</p>
+                        {% endfor %}
+                    </div>
+                {% endif %}
+
+                <div class="form-group">
+                    <label for="{{ form.username.id_for_label }}">Username</label>
+                    {{ form.username }}
+                    {% if form.username.errors %}<div class="field-errors">{{ form.username.errors.as_text }}</div>{% endif %}
+                </div>
+
+                <div class="form-group">
+                    <label for="{{ form.email.id_for_label }}">Email Address</label>
+                    {{ form.email }}
+                    {% if form.email.errors %}<div class="field-errors">{{ form.email.errors.as_text }}</div>{% endif %}
+                </div>
+                
+                <div class="form-group">
+                    <label for="{{ form.password1.id_for_label }}">Password</label>
+                    {{ form.password1 }}
+                    {% if form.password1.errors %}<div class="field-errors">{{ form.password1.errors.as_text }}</div>{% endif %}
+                </div>
+
+                <div class="form-group">
+                    <label for="{{ form.password2.id_for_label }}">Confirm Password</label>
+                    {{ form.password2 }}
+                    {% if form.password2.errors %}<div class="field-errors">{{ form.password2.errors.as_text }}</div>{% endif %}
+                </div>
+
+                <button type="submit" class="btn btn-primary btn-full-width">Create Account</button>
+            </form>
+            
+            <div class="auth-footer">
+                <p>Already have an account? <a href="{% url 'login' %}" class="link">Log In</a></p>
+            </div>
+        </div>
+    </main>
+
+</body>
+</html>
+

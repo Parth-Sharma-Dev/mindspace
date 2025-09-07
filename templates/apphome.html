@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+{% block title %}MindSpace - Your Safe Space for Mental Wellbeing{% endblock %}
+{% block meta_description %}A supportive mental health platform for students. Track your mood, access resources, and connect with peers in a safe environment.{% endblock %}
+
+{% block content %}
+<main class="page active">
+    <div class="hero-section">
+        <div class="container">
+            <div class="hero-content">
+                <h1 class="hero-title">
+                    Your Safe Space for
+                    <span class="gradient-text">Mental Wellbeing</span>
+                </h1>
+                <p class="hero-subtitle">
+                    A supportive community where students can find resources, connect anonymously, and prioritize their mental health journey.
+                </p>
+                <div class="hero-buttons">
+                    <a href="{% url 'dashboard' %}" class="btn btn-primary" data-testid="button-get-support">Get Support</a>
+                    <a href="{% url 'resources' %}" class="btn btn-secondary" data-testid="button-resources">Resources</a>
+                    <a href="{% url 'emergency' %}" class="btn btn-emergency" data-testid="button-emergency-help">Emergency Help</a>
+                </div>
+            </div>
+                    <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">🎯</div>
+                    <h3 class="feature-title">Mood Tracking</h3>
+                    <p class="feature-description">Monitor your emotional wellbeing with our simple daily mood tracker.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">💬</div>
+                    <h3 class="feature-title">Anonymous Forum</h3>
+                    <p class="feature-description">Connect with peers in a safe, judgment-free environment.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">📚</div>
+                    <h3 class="feature-title">Self-Help Resources</h3>
+                    <p class="feature-description">Access curated guides for stress, sleep, and relationships.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+{% endblock %}

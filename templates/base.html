@@ -27,19 +27,49 @@
             </div>
             <div class="nav-links" id="navLinks">
                 <!-- Ensure you name your urls 'index', 'dashboard', 'forum', 'resources', 'emergency' or adjust below -->
-                <a href="{% url 'index' %}" class="nav-link {% if request.path == '/' %}active{% endif %}" data-testid="nav-link-landing">Home</a>
+                <a href="{% url 'apphome' %}" class="nav-link {% if request.path == '/' %}active{% endif %}" data-testid="nav-link-landing">Home</a>
                 <a href="{% url 'dashboard' %}" class="nav-link {% if request.path == '/dashboard/' %}active{% endif %}" data-testid="nav-link-dashboard">Dashboard</a>
                 <a href="{% url 'forum' %}" class="nav-link {% if request.path == '/forum/' %}active{% endif %}" data-testid="nav-link-forum">Forum</a>
                 <a href="{% url 'resources' %}" class="nav-link {% if request.path == '/resources/' %}active{% endif %}" data-testid="nav-link-resources">Resources</a>
                 <a href="{% url 'emergency' %}" class="nav-link {% if request.path == '/emergency/' %}active{% endif %}" data-testid="nav-link-emergency">Helplines</a>
             </div>
+
+            {% if messages %}
+            <div class="messages">
+                {% for message in messages %}
+                <div class="message {{ message.tags }}">
+                    <span class="message-icon">
+                    {% if message.tags == 'success' %}✓{% elif message.tags == 'error' %}✕{% elif message.tags == 'warning' %}⚠{% else %}ℹ{% endif %}
+                    </span>
+                    <div class="message-content">{{ message }}</div>
+                    <button class="message-close" onclick="this.parentElement.remove()">×</button>
+                </div>
+                {% endfor %}
+            </div>
+            {% endif %}
+
+            <!-- User Authentication Section -->
+            <div class="nav-auth">
+                {% if user.is_authenticated %}
+                    <div class="user-menu">
+                        <div class="user-initials-icon">
+                            {{ user.username|first|upper }}
+                        </div>
+                        <span class="username-display">{{ user.username }}</span>
+                        <a href="{% url 'logout' %}" class="btn btn-secondary btn-logout">Logout</a>
+                    </div>
+                {% else %}
+                    <a href="{% url 'login' %}" class="btn btn-primary">Login</a>
+                {% endif %}
+            </div>
+
             <button class="mobile-menu-btn" id="mobileMenuBtn" data-testid="mobile-menu-button">☰</button>
         </div>
     </nav>
 
     <!-- Main content -->
         {% block content %}
-       
+        
         {% endblock %}
 
 
