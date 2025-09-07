@@ -1,0 +1,76 @@
+{% extends "base.html" %}
+{% block title %}MindSpace - My Posts{% endblock %}
+
+{% block content %}
+<main class="page active">
+    <div class="container">
+        <div class="page-navigation">
+            <a href="{% url 'forum' %}" class="btn btn-secondary">← Back to Forum</a>
+        </div>
+
+        <h1 class="page-header">My Posts</h1>
+
+        <div class="pseudonym-info">
+            <p>Posting as: <strong>{{ user_pseudonym }}</strong></p>
+        </div>
+
+        <!-- My Posts Section -->
+        <section class="my-posts-section">
+            <h2>Your Posts</h2>
+            {% if user_posts %}
+                {% for post in user_posts %}
+                <div class="my-post-item" id="post-{{ post.id }}">
+                    <div class="post-header">
+                        <h3>{{ post.title }}</h3>
+                    </div>
+                    <p class="post-content">{{ post.content|linebreaksbr }}</p>
+                    
+                    <!-- Edit Post Form -->
+                    <div class="edit-post-form">
+                        <form method="post" class="edit-form">
+                            {% csrf_token %}
+                            <input type="hidden" name="edit_post_id" value="{{ post.id }}">
+                            <input type="text" name="post_title" value="{{ post.title }}" required class="form-input">
+                            <textarea name="post_content" required class="form-input">{{ post.content }}</textarea>
+                            <div class="button-group">
+                                <button type="submit" name="action" value="edit_post" class="btn btn-primary">Save Changes</button>
+                                <button type="submit" name="action" value="delete_post" class="btn btn-danger" 
+                                        onclick="this.form.elements['edit_post_id'].name='delete_post_id'">Delete Post</button>
+                            </div>
+                        </form>
+                    </div>
+
+                    <!-- Comments -->
+                    <div class="forum-replies">
+                        {% for comment in post.comments.all %}
+                        <div class="my-comment-item">
+                            <p class="comment-display">{{ comment.text|linebreaksbr }}</p>
+
+                            <!-- Edit Comment Form -->
+                            <div class="edit-comment-form">
+                                <form method="post" class="edit-form">
+                                    {% csrf_token %}
+                                    <input type="hidden" name="edit_comment_id" value="{{ comment.id }}">
+                                    <textarea name="comment_text" required class="form-input">{{ comment.text }}</textarea>
+                                    <div class="button-group">
+                                        <button type="submit" name="action" value="edit_comment" class="btn btn-primary">Save Changes</button>
+                                        <button type="submit" name="action" value="delete_comment" class="btn btn-danger"
+                                                onclick="this.form.elements['edit_comment_id'].name='delete_comment_id'">Delete Comment</button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                        {% endfor %}
+                    </div>
+                </div>
+                {% endfor %}
+            {% else %}
+                <div class="empty-state">
+                    <p>You haven't created any posts yet.</p>
+                    <a href="{% url 'forum' %}" class="btn btn-primary">Create Your First Post</a>
+                </div>
+            {% endif %}
+        </section>
+    </div>
+</main>
+{% endblock %}

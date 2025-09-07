@@ -10,30 +10,60 @@
         <!-- Create Post -->
         <section class="card create-post-card">
             <h2>Start a Discussion</h2>
+            <div class="pseudonym-display">
+                <span>Posting as: <strong>{{ user_pseudonym }}</strong></span>
+            </div>
             <form method="post">
                 {% csrf_token %}
-                <textarea name="post_content" placeholder="Share your thoughts..."></textarea>
+                <input type="text" name="post_title" placeholder="Enter a title..." required>
+                <textarea name="post_content" placeholder="Share your thoughts..." required></textarea>
                 <button type="submit" class="btn btn-primary">Post</button>
             </form>
         </section>
 
         <!-- Posts -->
         <section>
-            <h2>Recent Posts</h2>
+            <div class="posts-header">
+    <h2>Recent Posts</h2>
+    <a href="{% url 'your-posts' %}" class="btn btn-secondary">Your Posts</a>
+</div>
+
+            {% for post in posts %}
             <div class="forum-post">
-                <h3>Anonymous</h3>
-                <p class="forum-post-content">You're not alone. We’re all here to support each other 💙</p>
-                <div class="forum-post-meta">
-                    <span>2h ago</span>
-                    <button class="replies-toggle">View Replies</button>
+                <div class="post-header">
+                    <h3>{{ post.title }}</h3>
+                    <span class="post-author">by {{ post.pseudonym }}</span>
                 </div>
-                <div class="forum-replies">
-                    <div class="forum-reply">
-                        <p class="forum-reply-content">Stay strong 💪</p>
-                        <span class="forum-reply-time">1h ago</span>
+                <p class="forum-post-content">{{ post.content }}</p>
+                <div class="forum-post-meta">
+                    <span>{{ post.created_at|timesince }} ago</span>
+                    <button class="replies-toggle">View Replies ({{ post.comments.count }})</button>
+                </div>
+
+                <!-- Comment Form -->
+                <div class="comment-form-section">
+                    <div class="pseudonym-display comment-pseudonym">
+                        <span>Replying as: <strong>{{ user_pseudonym }}</strong></span>
                     </div>
+                    <form method="post" action="{% url 'add-comment' post.id %}">
+                        {% csrf_token %}
+                        <textarea name="comment_text" placeholder="Write a reply..." required></textarea>
+                        <button type="submit" class="btn btn-secondary">Reply</button>
+                    </form>
+                </div>
+
+                <!-- Replies -->
+                <div class="forum-replies">
+                    {% for comment in post.comments.all %}
+                    <div class="forum-reply">
+                        <h4>{{ comment.pseudonym }}</h4>
+                        <p class="forum-reply-content">{{ comment.text }}</p>
+                        <span class="forum-reply-time">{{ comment.created_at|timesince }} ago</span>
+                    </div>
+                    {% endfor %}
                 </div>
             </div>
+            {% endfor %}
         </section>
     </div>
 </main>

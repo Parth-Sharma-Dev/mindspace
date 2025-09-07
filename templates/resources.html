@@ -1,52 +1,49 @@
 {% extends "base.html" %}
-{% block title %}MindSpace - Resources{% endblock %}
-{% block meta_description %}Access curated self-help resources for stress management, sleep improvement, mindfulness, and wellbeing.{% endblock %}
+{% block title %}MindSpace - Rooms{% endblock %}
+{% block meta_description %}Explore different virtual rooms designed for relaxation, meditation, focus, and wellbeing.{% endblock %}
 
 {% block content %}
 <main class="page active">
     <div class="container">
-        <h1 class="page-header">Self-Help Resources</h1>
+        <h1 class="page-header">Virtual Rooms</h1>
 
-        <!-- Resource Cards -->
+        <!-- Room Cards -->
         <div class="resources-grid">
+            {% for room in rooms %}
             <div class="resource-card">
-                <div class="resource-icon">🌿</div>
-                <h3>Managing Stress</h3>
-                <p>Learn simple techniques to cope with daily stress and anxiety.</p>
-                <a href="#" class="btn btn-secondary">Read More</a>
+                <div class="resource-icon">💙</div> <!-- You can later store icons in DB if needed -->
+                <h3>{{ room.title }}</h3>
+                <p>{{ room.description }}</p>
+                <a href="#" class="btn btn-secondary">Enter Room</a>
             </div>
-            <div class="resource-card">
-                <div class="resource-icon">😴</div>
-                <h3>Better Sleep</h3>
-                <p>Tips and routines to improve your sleep quality and rest better.</p>
-                <a href="#" class="btn btn-secondary">Read More</a>
-            </div>
-            <div class="resource-card">
-                <div class="resource-icon">🧘</div>
-                <h3>Mindfulness</h3>
-                <p>Practice meditation and mindfulness exercises for inner calm.</p>
-                <a href="#" class="btn btn-secondary">Read More</a>
-            </div>
+            {% empty %}
+            <p>No rooms available yet.</p>
+            {% endfor %}
         </div>
 
-        <!-- Self-Care Tips -->
+        <!-- Room Features -->
         <section class="card self-care-card">
-            <h2>Daily Self-Care</h2>
+            <h2>Room Features</h2>
             <div class="self-care-grid">
                 <div class="self-care-tip">
-                    <div class="tip-icon">🚶</div>
-                    <h4>Move Around</h4>
-                    <p>Take short breaks and stretch</p>
+                    <div class="tip-icon">🎵</div>
+                    <h4>Ambient Sounds</h4>
+                    <p>Immersive audio experiences</p>
                 </div>
                 <div class="self-care-tip">
-                    <div class="tip-icon">💧</div>
-                    <h4>Stay Hydrated</h4>
-                    <p>Drink enough water daily</p>
+                    <div class="tip-icon">🌈</div>
+                    <h4>Visual Themes</h4>
+                    <p>Beautiful, calming environments</p>
                 </div>
                 <div class="self-care-tip">
-                    <div class="tip-icon">📱</div>
-                    <h4>Digital Detox</h4>
-                    <p>Limit screen time before bed</p>
+                    <div class="tip-icon">⏰</div>
+                    <h4>Timer Settings</h4>
+                    <p>Customizable session lengths</p>
+                </div>
+                <div class="self-care-tip">
+                    <div class="tip-icon">💫</div>
+                    <h4>Mood Lighting</h4>
+                    <p>Adjustable ambiance controls</p>
                 </div>
             </div>
         </section>

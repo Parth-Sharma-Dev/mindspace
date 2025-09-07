@@ -308,6 +308,29 @@ main {
   color: #2563eb;
 }
 
+.btn-small {
+  padding: 0.5rem 0.75rem;
+  font-size: 0.875rem;
+}
+
+.btn-danger {
+  background: #ef4444;
+  color: white;
+}
+
+.btn-danger:hover:not(:disabled) {
+  background: #dc2626;
+}
+
+.btn-warning {
+  background: #f59e0b;
+  color: white;
+}
+
+.btn-warning:hover:not(:disabled) {
+  background: #d97706;
+}
+
 /* Landing Page */
 .hero-section {
   min-height: 100vh;
@@ -978,6 +1001,7 @@ main {
 
 .replies-toggle:hover {
   color: #2563eb;
+  background-color: #f1f5f9;
 }
 
 .forum-replies {
@@ -993,6 +1017,13 @@ main {
   border-left: 3px solid #64748b;
 }
 
+.forum-reply h4 {
+  color: #1e293b;
+  font-size: 0.9rem;
+  font-weight: 600;
+  margin: 0 0 0.5rem 0;
+}
+
 .forum-reply-content {
   margin-bottom: 0.5rem;
   color: #334155;
@@ -1001,6 +1032,464 @@ main {
 .forum-reply-time {
   font-size: 0.75rem;
   color: #64748b;
+}
+
+/* Forum Page Specific Updates */
+
+/* Posts Header */
+.posts-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1.5rem;
+}
+
+.posts-header h2 {
+    margin: 0;
+    color: #1e293b;
+}
+
+.your-posts-btn {
+    padding: 0.5rem 1rem;
+    font-size: 0.9rem;
+}
+
+/* Forum Post Header */
+.post-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    margin-bottom: 1rem;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+}
+
+.post-header h3 {
+    margin: 0;
+    color: #1e293b;
+    flex: 1;
+    min-width: 200px;
+}
+
+.post-author {
+    color: #64748b;
+    font-size: 0.875rem;
+    font-weight: 500;
+    font-style: italic;
+}
+
+/* Comment Form Section */
+.comment-form-section {
+    margin-top: 1rem;
+    padding-top: 1rem;
+    border-top: 1px solid #e2e8f0;
+}
+
+.comment-pseudonym {
+    margin-bottom: 0.75rem;
+    font-size: 0.85rem;
+    padding: 0.5rem 0.75rem;
+}
+
+/* Comment Form */
+.forum-post form {
+    margin-top: 0;
+    padding-top: 0;
+    border-top: none;
+}
+
+.forum-post form textarea {
+    width: 100%;
+    min-height: 80px;
+    padding: 0.75rem;
+    border: 1px solid #e2e8f0;
+    border-radius: 0.5rem;
+    font-family: inherit;
+    font-size: 0.9rem;
+    resize: vertical;
+    margin-bottom: 0.75rem;
+    transition: border-color 0.3s ease;
+}
+
+.forum-post form textarea:focus {
+    outline: none;
+    border-color: #3b82f6;
+    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+}
+
+.forum-post form textarea::placeholder {
+    color: #9ca3af;
+}
+
+.forum-post form button {
+    padding: 0.5rem 1rem;
+    font-size: 0.875rem;
+}
+
+/* Pseudonym Display */
+.pseudonym-display {
+    background: #f1f5f9;
+    border: 1px solid #e2e8f0;
+    border-radius: 0.5rem;
+    padding: 0.75rem 1rem;
+    margin-bottom: 1rem;
+    font-size: 0.9rem;
+    color: #64748b;
+}
+
+.pseudonym-display strong {
+    color: #334155;
+    font-weight: 600;
+}
+
+/* My Posts Page Styles */
+.page-navigation {
+    margin-bottom: 1.5rem;
+}
+
+.page-header {
+    text-align: center;
+    margin-bottom: 2rem;
+    color: #1e293b;
+    font-size: 2.5rem;
+    font-weight: 700;
+}
+
+.pseudonym-info {
+    background: linear-gradient(135deg, rgba(59, 130, 246, 0.1) 0%, rgba(139, 92, 246, 0.1) 100%);
+    border: 1px solid #e2e8f0;
+    border-radius: 1rem;
+    padding: 1.25rem;
+    margin-bottom: 2.5rem;
+    text-align: center;
+    font-size: 1.1rem;
+    color: #64748b;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+.pseudonym-info strong {
+    color: #334155;
+    font-weight: 600;
+}
+
+/* My Posts Section */
+.my-posts-section h2 {
+    margin-bottom: 2rem;
+    color: #1e293b;
+    font-size: 2rem;
+    font-weight: 600;
+}
+
+/* Filter Section */
+.filter-section {
+    margin-bottom: 2rem;
+}
+
+.filter-buttons {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.filter-btn {
+    background: #f8fafc;
+    color: #64748b;
+    border: 1px solid #e2e8f0;
+    padding: 0.75rem 1.25rem;
+    border-radius: 0.5rem;
+    cursor: pointer;
+    font-weight: 500;
+    font-size: 0.9rem;
+    transition: all 0.3s ease;
+}
+
+.filter-btn:hover {
+    background: #f1f5f9;
+    border-color: #cbd5e1;
+}
+
+.filter-btn.active {
+    background: #3b82f6;
+    color: white;
+    border-color: #3b82f6;
+    transform: scale(1.02);
+}
+
+/* Activity Items */
+.activity-item {
+    background: white;
+    border-radius: 1rem;
+    padding: 1.5rem;
+    margin-bottom: 1.5rem;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+    border-left: 4px solid #8b5cf6;
+    transition: all 0.3s ease;
+}
+
+.activity-item:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 25px -3px rgba(0, 0, 0, 0.1);
+}
+
+.activity-type {
+    display: inline-block;
+    background: #8b5cf6;
+    color: white;
+    padding: 0.25rem 0.75rem;
+    border-radius: 1rem;
+    font-size: 0.75rem;
+    font-weight: 600;
+    margin-bottom: 1rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+/* My Post Item */
+.my-post-item {
+    background: white;
+    border-radius: 1rem;
+    padding: 2rem;
+    margin-bottom: 2rem;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+    border-left: 4px solid #3b82f6;
+    transition: all 0.3s ease;
+    position: relative;
+}
+
+.my-post-item:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 25px -3px rgba(0, 0, 0, 0.1);
+}
+
+.my-post-item .post-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 1.5rem;
+    flex-wrap: wrap;
+    gap: 1rem;
+}
+
+.my-post-item .post-header h3 {
+    margin: 0;
+    color: #1e293b;
+    flex: 1;
+    min-width: 200px;
+    font-size: 1.4rem;
+    font-weight: 600;
+}
+
+.post-actions {
+    display: flex;
+    gap: 0.75rem;
+    flex-shrink: 0;
+    flex-wrap: wrap;
+}
+
+.post-content {
+    color: #64748b;
+    margin-bottom: 1.5rem;
+    line-height: 1.7;
+    font-size: 1rem;
+    background: #f8fafc;
+    padding: 1rem;
+    border-radius: 0.5rem;
+    border-left: 3px solid #cbd5e1;
+}
+
+.post-stats {
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+    font-size: 0.875rem;
+    color: #64748b;
+    flex-wrap: wrap;
+}
+
+.view-post-link {
+    color: #3b82f6;
+    text-decoration: none;
+    font-weight: 500;
+}
+
+.view-post-link:hover {
+    color: #2563eb;
+    text-decoration: underline;
+}
+
+/* My Comment Item (within posts) */
+.my-comment-item {
+    background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
+    border-radius: 0.75rem;
+    padding: 1.25rem;
+    margin: 1rem 0 1rem 1.5rem;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.08);
+    border-left: 4px solid #10b981;
+    transition: all 0.3s ease;
+    position: relative;
+}
+
+.my-comment-item:hover {
+    transform: translateX(4px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.my-comment-item::before {
+    content: '💬';
+    position: absolute;
+    top: -8px;
+    left: -8px;
+    background: #10b981;
+    color: white;
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.8rem;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.my-comment-item p {
+    color: #374151;
+    margin-bottom: 1rem;
+    line-height: 1.6;
+    font-size: 0.95rem;
+}
+
+.comment-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 1rem;
+    flex-wrap: wrap;
+    gap: 1rem;
+}
+
+.comment-header h4 {
+    margin: 0;
+    color: #1e293b;
+    font-size: 1.1rem;
+    flex: 1;
+    min-width: 200px;
+}
+
+.comment-actions {
+    display: flex;
+    gap: 0.5rem;
+    flex-shrink: 0;
+}
+
+.comment-content {
+    color: #64748b;
+    margin-bottom: 1rem;
+    line-height: 1.6;
+}
+
+.comment-stats {
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+    font-size: 0.875rem;
+    color: #64748b;
+    flex-wrap: wrap;
+}
+
+/* Edit Forms */
+.edit-post-form,
+.edit-comment-form {
+    background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
+    border: 1px solid #e2e8f0;
+    border-radius: 1rem;
+    padding: 1.5rem;
+    margin-top: 1.5rem;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+.edit-post-form input,
+.edit-post-form textarea,
+.edit-comment-form textarea {
+    width: 100%;
+    padding: 1rem;
+    border: 2px solid #e2e8f0;
+    border-radius: 0.5rem;
+    margin-bottom: 1rem;
+    font-family: inherit;
+    font-size: 1rem;
+    resize: vertical;
+    background: white;
+    transition: all 0.3s ease;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.edit-post-form input:focus,
+.edit-post-form textarea:focus,
+.edit-comment-form textarea:focus {
+    outline: none;
+    border-color: #3b82f6;
+    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1), 0 2px 8px rgba(0, 0, 0, 0.15);
+    transform: translateY(-1px);
+}
+
+.edit-post-form textarea,
+.edit-comment-form textarea {
+    min-height: 120px;
+    line-height: 1.6;
+}
+
+.form-actions {
+    display: flex;
+    gap: 1rem;
+    justify-content: flex-end;
+    margin-top: 1.5rem;
+    padding-top: 1rem;
+    border-top: 1px solid #e2e8f0;
+}
+
+.form-actions .btn {
+    min-width: 100px;
+    font-weight: 600;
+}
+
+/* Empty State */
+.empty-state {
+    text-align: center;
+    padding: 4rem 2rem;
+    background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
+    border-radius: 1.5rem;
+    border: 2px dashed #cbd5e1;
+    margin: 2rem 0;
+}
+
+.empty-state::before {
+    content: '📝';
+    font-size: 4rem;
+    display: block;
+    margin-bottom: 1rem;
+    opacity: 0.7;
+}
+
+.empty-state p {
+    color: #64748b;
+    font-size: 1.2rem;
+    margin-bottom: 2rem;
+    font-weight: 500;
+}
+
+.empty-state .btn {
+    background: linear-gradient(135deg, #3b82f6 0%, #8b5cf6 100%);
+    color: white;
+    padding: 1rem 2rem;
+    font-size: 1.1rem;
+    font-weight: 600;
+    box-shadow: 0 4px 12px rgba(59, 130, 246, 0.3);
+}
+
+.empty-state .btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(59, 130, 246, 0.4);
 }
 
 /* Resources Page */
@@ -1303,6 +1792,106 @@ main {
     flex-direction: column !important; /* Stack all feature sections on mobile */
     text-align: center;
   }
+
+  /* My Posts Page Mobile Styles */
+  .page-header {
+    font-size: 2rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .pseudonym-info {
+    padding: 1rem;
+    font-size: 1rem;
+    margin-bottom: 2rem;
+  }
+
+  .my-post-item {
+    padding: 1.5rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .my-post-item .post-header h3 {
+    font-size: 1.2rem;
+  }
+
+  .post-content {
+    padding: 0.75rem;
+    font-size: 0.95rem;
+  }
+
+  .my-comment-item {
+    margin-left: 0.5rem;
+    padding: 1rem;
+  }
+
+  .my-comment-item::before {
+    display: none; /* Hide emoji icon on mobile */
+  }
+
+  .edit-post-form,
+  .edit-comment-form {
+    padding: 1rem;
+  }
+
+  .edit-post-form input,
+  .edit-post-form textarea,
+  .edit-comment-form textarea {
+    padding: 0.75rem;
+    font-size: 0.95rem;
+  }
+
+  .filter-buttons {
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .filter-btn {
+    width: 100%;
+    text-align: center;
+  }
+
+  .post-header,
+  .comment-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.75rem;
+  }
+
+  .post-actions,
+  .comment-actions {
+    width: 100%;
+    justify-content: flex-end;
+    gap: 0.5rem;
+  }
+
+  .post-stats,
+  .comment-stats {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.5rem;
+  }
+
+  .form-actions {
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .form-actions .btn {
+    width: 100%;
+    min-width: auto;
+  }
+
+  .empty-state {
+    padding: 2.5rem 1rem;
+  }
+
+  .empty-state::before {
+    font-size: 3rem;
+  }
+
+  .empty-state p {
+    font-size: 1rem;
+  }
 }
 
 @media (max-width: 480px) {
@@ -1325,6 +1914,84 @@ main {
   .mood-button {
     font-size: 2rem;
     padding: 0.5rem;
+  }
+
+  /* My Posts Page Mobile Adjustments */
+  .my-post-item,
+  .my-comment-item,
+  .activity-item {
+    padding: 1rem;
+  }
+
+  .page-header {
+    font-size: 1.8rem;
+  }
+
+  .pseudonym-info {
+    padding: 0.75rem;
+    font-size: 0.95rem;
+  }
+
+  .my-post-item .post-header h3 {
+    font-size: 1.1rem;
+  }
+
+  .post-content {
+    padding: 0.5rem;
+    font-size: 0.9rem;
+  }
+
+  .my-comment-item {
+    margin-left: 0;
+    padding: 0.75rem;
+  }
+
+  /* Mobile form styling adjustments for My Posts page */
+  .my-post-item form input,
+  .my-post-item form textarea,
+  .my-comment-item form input,
+  .my-comment-item form textarea {
+    padding: 0.6rem;
+    font-size: 0.9rem;
+  }
+
+  .edit-post-form,
+  .edit-comment-form {
+    padding: 0.75rem;
+  }
+
+  .edit-post-form input,
+  .edit-post-form textarea,
+  .edit-comment-form textarea {
+    padding: 0.6rem;
+    font-size: 0.9rem;
+  }
+
+  .filter-btn {
+    padding: 0.6rem 1rem;
+    font-size: 0.85rem;
+  }
+
+  .btn-small {
+    padding: 0.4rem 0.6rem;
+    font-size: 0.8rem;
+  }
+
+  .post-actions,
+  .comment-actions {
+    gap: 0.25rem;
+  }
+
+  .empty-state {
+    padding: 2rem 0.75rem;
+  }
+
+  .empty-state::before {
+    font-size: 2.5rem;
+  }
+
+  .empty-state p {
+    font-size: 0.95rem;
   }
 }
 
