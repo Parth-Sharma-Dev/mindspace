@@ -1,12 +1,12 @@
 services:
   # A PostgreSQL database
-  - type: psql
-    name: postgres
+  - type: postgres # <-- CORRECTED from psql
+    name: postgres-db # Changed name to avoid conflict with type
     plan: free
 
   # A Redis instance for the channel layer
   - type: redis
-    name: redis
+    name: redis-cache # Changed name to avoid conflict with type
     plan: free
 
   # The Daphne web service
@@ -22,15 +22,15 @@ services:
     envVars:
       - key: DATABASE_URL
         fromService:
-          type: psql
-          name: postgres
+          type: postgres
+          name: postgres-db
           property: connectionString
       - key: REDIS_URL
         fromService:
           type: redis
-          name: redis
+          name: redis-cache
           property: connectionString
       - key: SECRET_KEY
-        generateValue: true # Render will generate a random secret key
+        generateValue: true
       - key: PYTHON_VERSION
-        value: 3.12.2 # Match your Python version
+        value: 3.12.2
