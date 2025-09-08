@@ -1,12 +1,12 @@
-services:
-  # A PostgreSQL database
-  - type: postgres # <-- CORRECTED from psql
-    name: postgres-db # Changed name to avoid conflict with type
+databases:
+  # A PostgreSQL database defined in its own block
+  - name: mindspace-db
     plan: free
 
+services:
   # A Redis instance for the channel layer
   - type: redis
-    name: redis-cache # Changed name to avoid conflict with type
+    name: redis-cache
     plan: free
 
   # The Daphne web service
@@ -21,9 +21,8 @@ services:
     startCommand: "daphne mindspace.asgi:application -p $PORT -b 0.0.0.0"
     envVars:
       - key: DATABASE_URL
-        fromService:
-          type: postgres
-          name: postgres-db
+        fromDatabase: # <-- CORRECTED from fromService
+          name: mindspace-db
           property: connectionString
       - key: REDIS_URL
         fromService:
