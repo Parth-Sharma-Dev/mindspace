@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth import login, logout
 from django.contrib.auth.decorators import login_required
+from django.http import JsonResponse
 from rest_framework import generics, viewsets, permissions
 from rest_framework.response import Response
 from .forms import SignUpForm, LoginForm
@@ -106,6 +107,49 @@ def your_posts(request):
 def resources(request):
     rooms = Room.objects.all()
     return render(request, "resources.html", {"rooms": rooms})
+
+@login_required(login_url='')
+def chat_room(request, room_id):
+    user_anon_id = anon_id(request.user.id) if request.user.is_authenticated else None
+    user_pseudonym = pseudonym_for(request.user.id, "chat") if request.user.is_authenticated else "Guest"
+    room = get_object_or_404(Room, id=room_id)
+    messages = Message.objects.filter(room=room).order_by("created_at")
+
+    if request.method == "POST":
+        text = request.POST.get("message")
+        if text.strip():
+            Message.objects.create(
+                room=room,
+                pseudonym=user_pseudonym,
+                anon_id=user_anon_id,
+                text=text
+            )
+        return redirect("chat_room", room_id=room.id)
+
+    return render(request, "chat.html", {
+        "room": room,
+        "messages": messages,
+        "pseudonym": user_pseudonym,
+        "anon_id": user_anon_id,
+    })
+
+@login_required(login_url='')
+def fetch_messages(request, room_id):
+    """Return all messages for a given room in JSON format (for AJAX polling)."""
+    room = get_object_or_404(Room, id=room_id)
+    messages = room.messages.order_by("created_at")
+
+    data = []
+    for msg in messages:
+        data.append({
+            "pseudonym": msg.pseudonym,  
+            "text": msg.text,
+            "created_at": msg.created_at.strftime("%H:%M"),
+            "own": msg.anon_id == anon_id(request.user.id),  
+        })
+
+    return JsonResponse({"messages": data})
+
 
 
 @login_required(login_url='')

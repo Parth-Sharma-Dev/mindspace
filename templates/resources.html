@@ -14,7 +14,7 @@
                 <div class="resource-icon">💙</div> <!-- You can later store icons in DB if needed -->
                 <h3>{{ room.title }}</h3>
                 <p>{{ room.description }}</p>
-                <a href="#" class="btn btn-secondary">Enter Room</a>
+                <a href="{% url 'chat_room' room.id %}" class="btn btn-secondary">Enter Room</a>
             </div>
             {% empty %}
             <p>No rooms available yet.</p>

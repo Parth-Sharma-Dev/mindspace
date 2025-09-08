@@ -17,12 +17,16 @@ class Room(models.Model):
 class Message(models.Model):
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     room = models.ForeignKey(Room, on_delete=models.CASCADE, related_name="messages")
-    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.PROTECT)
+    pseudonym = models.CharField(max_length=100)
+    anon_id = models.CharField(max_length=100)
     text = models.TextField()
     created_at = models.DateTimeField(auto_now_add=True)
 
     class Meta:
         ordering = ["created_at"]
+
+    def __str__(self):
+        return f"{self.pseudonym}: {self.text[:30]} ({self.created_at.strftime('%H:%M')})"
 
 # ------------------ Forum ------------------
 

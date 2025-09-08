@@ -1,0 +1,36 @@
+services:
+  # A PostgreSQL database
+  - type: psql
+    name: postgres
+    plan: free
+
+  # A Redis instance for the channel layer
+  - type: redis
+    name: redis
+    plan: free
+
+  # The Daphne web service
+  - type: web
+    name: mindspace
+    plan: free
+    env: python
+    buildCommand: |
+      pip install -r requirements.txt
+      python manage.py collectstatic --no-input
+      python manage.py migrate
+    startCommand: "daphne mindspace.asgi:application -p $PORT -b 0.0.0.0"
+    envVars:
+      - key: DATABASE_URL
+        fromService:
+          type: psql
+          name: postgres
+          property: connectionString
+      - key: REDIS_URL
+        fromService:
+          type: redis
+          name: redis
+          property: connectionString
+      - key: SECRET_KEY
+        generateValue: true # Render will generate a random secret key
+      - key: PYTHON_VERSION
+        value: 3.12.2 # Match your Python version

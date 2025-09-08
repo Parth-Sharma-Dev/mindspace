@@ -1,0 +1,91 @@
+{% extends "base.html" %}
+{% block title %}MindSpace - {{ room.title }}{% endblock %}
+{% block meta_description %}Chat with others in a safe and supportive space inside {{ room.title }}.{% endblock %}
+
+{% block content %}
+<main class="page active">
+  <div class="container chat-container">
+
+    <!-- Room Header -->
+    <div class="chat-header">
+      <h2>{{ room.title }}</h2>
+      <p class="chat-subtitle">You’re in a safe space 💙</p>
+    </div>
+
+    <!-- Messages Area -->
+    <div class="chat-box" id="chat-box">
+      {% for message in messages %}
+  <div class="chat-message {% if message.anon_id == anon_id %}own-message{% endif %}">
+    <div class="message-user">{{ message.pseudonym|default:"Anonymous" }}</div>
+    <div class="message-text">{{ message.text }}</div>
+    <div class="message-time">{{ message.created_at|date:"H:i" }}</div>
+  </div>
+{% empty %}
+  <p class="no-messages">No messages yet. Be the first to say hi 👋</p>
+{% endfor %}
+    </div>
+
+    <!-- Message Input -->
+    <form method="POST" class="chat-form">
+      {% csrf_token %}
+      <input
+        type="text"
+        name="message"
+        placeholder="Type your message..."
+        required
+      />
+      <button type="submit" class="btn btn-primary">Send</button>
+    </form>
+  </div>
+</main>
+
+<script>
+const roomId = "{{ room.id }}";
+const anonId = "{{ anon_id }}";
+const chatBox = document.getElementById("chat-box");
+
+// Connect to WebSocket
+const wsScheme = window.location.protocol === "https:" ? "wss" : "ws";
+
+// CORRECTED: This entire block must be wrapped in backticks (` `)
+const chatSocket = new WebSocket(
+    `${wsScheme}://${window.location.host}/ws/rooms/${roomId}/`
+);
+
+chatSocket.onmessage = function(e) {
+    const data = JSON.parse(e.data);
+    console.log("Message received:", data);
+    
+    const msgDiv = document.createElement("div");
+    msgDiv.classList.add("chat-message");
+    if (data.anon_id === anonId) {
+        msgDiv.classList.add("own-message");
+    }
+
+    msgDiv.innerHTML = `
+        <div class="message-user">${data.pseudonym}</div>
+        <div class="message-text">${data.message}</div>
+        <div class="message-time">${data.created_at}</div>
+    `;
+
+    chatBox.appendChild(msgDiv);
+    chatBox.scrollTop = chatBox.scrollHeight;
+};
+
+// Send message on form submit
+document.querySelector(".chat-form").onsubmit = function(e) {
+    e.preventDefault();
+    const input = this.querySelector("input[name='message']");
+    if (input.value.trim() !== "") {
+        chatSocket.send(JSON.stringify({
+            'message': input.value
+        }));
+        input.value = "";
+    }
+};
+
+// Scroll to bottom on page load
+chatBox.scrollTop = chatBox.scrollHeight;
+</script>
+
+{% endblock %}
