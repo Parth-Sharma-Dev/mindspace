@@ -8,6 +8,7 @@ services:
   - type: redis
     name: redis-cache
     plan: free
+    ipAllowList: [] # <-- ADD THIS BLOCK. An empty list allows all internal traffic.
 
   # The Daphne web service
   - type: web
@@ -21,7 +22,7 @@ services:
     startCommand: "daphne mindspace.asgi:application -p $PORT -b 0.0.0.0"
     envVars:
       - key: DATABASE_URL
-        fromDatabase: # <-- CORRECTED from fromService
+        fromDatabase:
           name: mindspace-db
           property: connectionString
       - key: REDIS_URL
