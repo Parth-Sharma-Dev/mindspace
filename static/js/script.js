@@ -71,7 +71,7 @@ function initBrandNavigation() {
     const brandLogo = document.querySelector('.nav-brand');
     if (brandLogo) {
         brandLogo.addEventListener('click', () => {
-            window.location.href = 'index.html';
+            window.location.href = 'apphome.html';
         });
     }
 }
